@@ -37,22 +37,37 @@ public class EtudiantService {
         return etudiantById.orElse(null);
     }
 
-    private Etudiant lireOne(String nom) {
+    public Etudiant lireOne(String email) {
         // on retourne l'etudiant s'il existe sinon null
-        Etudiant etudiantInBDD = etudiantRepository.findByName(nom);
-        if (etudiantInBDD == null){
-            return null;
-        }
-        return etudiantInBDD;
+        Etudiant etudiantByEmail = this.etudiantRepository.findByEmail(email);
+//        Optional<Etudiant> etudiantByEmail = this.etudiantRepository.findByEmail(email);
+        // Utilisation de orElse(null) pour obtenir l'objet Etudiant ou null s'il n'existe pas
+        return etudiantByEmail;
     }
 
-    public void supprimer(String nom) {
-        this.etudiantRepository.deleteByName(nom);
+    public void supprimer(int id) {
+        this.etudiantRepository.deleteById(id);
     }
 
-    public void modifier(String nom, Etudiant etudiant) {
+    public void modifier(int id, Etudiant etudiant) {
         // on recupere le Etudiant de la BDD
-        Etudiant etudiantAModifier = this.lireOne(nom);
+        Etudiant etudiantAModifier = this.lireOne(id);
+
+        // on peut verifier que le etudiant de la BDD a modifier == etudiant donné en parametre a modifier
+        if (etudiantAModifier.getId() == etudiant.getId()) {
+            // on va modifier son email et son tel , nom et adrese
+            etudiantAModifier.setNom(etudiant.getNom());
+            etudiantAModifier.setEmail(etudiant.getEmail());
+            etudiantAModifier.setTel(etudiant.getTel());
+            etudiantAModifier.setAdresse(etudiant.getAdresse());
+
+            // ne pas oublier de l'enregistrer sinon les modif ne seront pas exectuer
+            this.etudiantRepository.save(etudiantAModifier);
+        }
+    }
+    public void modifierByEmail(String email, Etudiant etudiant) {
+        // on recupere le Etudiant de la BDD
+        Etudiant etudiantAModifier = this.lireOne(email);
 
         // on peut verifier que le etudiant de la BDD a modifier == etudiant donné en parametre a modifier
         if (etudiantAModifier.getId() == etudiant.getId()) {

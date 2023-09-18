@@ -31,15 +31,21 @@ public class EtudiantController {
         return this.etudiantService.lireOne(id);
     }
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping(path ="{nom}")
-    public String supprimer(@PathVariable String nom){
-        this.etudiantService.supprimer(nom);
+    @DeleteMapping(path ="{id}")
+    public String supprimer(@PathVariable int id){
+        this.etudiantService.supprimer(id);
         return "l'etudiant a bien été supprimé";
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping(path ="{nom}", consumes = APPLICATION_JSON_VALUE)
-    public void modifier(@PathVariable String nom, @RequestBody Etudiant etudiant){
-        this.etudiantService.modifier(nom, etudiant);
+    @PutMapping(path ="{id}", consumes = APPLICATION_JSON_VALUE)
+    public void modifier(@PathVariable int id, @RequestBody Etudiant etudiant){
+        this.etudiantService.modifier(id, etudiant);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping(path ="byemail/{email}", consumes = APPLICATION_JSON_VALUE)
+    public void modifierByEmail(@PathVariable String email, @RequestBody Etudiant etudiant){
+        this.etudiantService.modifierByEmail(email, etudiant);
     }
 }
