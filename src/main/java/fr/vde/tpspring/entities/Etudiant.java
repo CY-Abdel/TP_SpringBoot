@@ -17,10 +17,9 @@ public class Etudiant {
     @Column(nullable = false, unique = true)
     private String nom;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(unique = true)
     private int tel;
 
     private String adresse;
