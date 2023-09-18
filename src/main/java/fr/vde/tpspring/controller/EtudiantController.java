@@ -37,4 +37,9 @@ public class EtudiantController {
         return "l'etudiant a bien été supprimé";
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping(path ="{nom}", consumes = APPLICATION_JSON_VALUE)
+    public void modifier(@PathVariable String nom, @RequestBody Etudiant etudiant){
+        this.etudiantService.modifier(nom, etudiant);
+    }
 }
