@@ -33,4 +33,7 @@ public class EtudiantService {
         Optional<Etudiant> etudiantById = this.etudiantRepository.findById(id);
         return etudiantById.orElse(null);
     }
+    public void supprimer(String nom) {
+        this.etudiantRepository.deleteByName(nom);
+    }
 }

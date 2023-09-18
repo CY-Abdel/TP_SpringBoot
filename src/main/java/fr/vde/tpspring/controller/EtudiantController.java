@@ -30,5 +30,11 @@ public class EtudiantController {
     public Etudiant lireOne(@PathVariable int id){
         return this.etudiantService.lireOne(id);
     }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping(path ="{nom}")
+    public String supprimer(@PathVariable String nom){
+        this.etudiantService.supprimer(nom);
+        return "l'etudiant a bien été supprimé";
+    }
 
 }

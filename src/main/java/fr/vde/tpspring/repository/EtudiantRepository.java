@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface EtudiantRepository extends JpaRepository<Etudiant, Integer> {
 
     Etudiant findByEmail(String email);
+    void deleteByName(String nom);
 }
