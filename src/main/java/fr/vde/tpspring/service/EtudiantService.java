@@ -11,6 +11,4 @@ public class EtudiantService {
     public EtudiantService(EtudiantRepository etudiantRepository) {
         this.etudiantRepository = etudiantRepository;
     }
-
-    
 }
