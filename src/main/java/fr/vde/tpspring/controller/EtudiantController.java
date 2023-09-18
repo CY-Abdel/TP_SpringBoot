@@ -26,5 +26,9 @@ public class EtudiantController {
     public List<Etudiant> lireAll(){
         return this.etudiantService.lireAll();
     }
+    @GetMapping(path = "{id}", produces = APPLICATION_JSON_VALUE)
+    public Etudiant lireOne(@PathVariable int id){
+        return this.etudiantService.lireOne(id);
+    }
 
 }

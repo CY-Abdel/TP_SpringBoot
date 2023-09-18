@@ -5,6 +5,7 @@ import fr.vde.tpspring.repository.EtudiantRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EtudiantService {
@@ -26,5 +27,10 @@ public class EtudiantService {
     }
     public List<Etudiant> lireAll() {
         return this.etudiantRepository.findAll();
+    }
+    public Etudiant lireOne(int  id) {
+        // on retourne l'etudiant s'il existe sinon null
+        Optional<Etudiant> etudiantById = this.etudiantRepository.findById(id);
+        return etudiantById.orElse(null);
     }
 }
