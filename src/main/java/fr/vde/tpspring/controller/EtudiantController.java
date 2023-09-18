@@ -3,6 +3,7 @@ package fr.vde.tpspring.controller;
 import fr.vde.tpspring.entities.Etudiant;
 import fr.vde.tpspring.service.EtudiantService;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,10 +31,18 @@ public class EtudiantController {
     public Etudiant lireOne(@PathVariable int id){
         return this.etudiantService.lireOne(id);
     }
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping(path ="{id}")
     public String supprimer(@PathVariable int id){
         this.etudiantService.supprimer(id);
+        return "l'etudiant a bien été supprimé";
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping(path ="byemail/{email}")
+    public String supprimerByEmail(@PathVariable String email){
+        this.etudiantService.supprimerByEmail(email);
         return "l'etudiant a bien été supprimé";
     }
 

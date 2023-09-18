@@ -3,6 +3,7 @@ package fr.vde.tpspring.service;
 import fr.vde.tpspring.entities.Etudiant;
 import fr.vde.tpspring.repository.EtudiantRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,8 +46,13 @@ public class EtudiantService {
         return etudiantByEmail;
     }
 
+    @Transactional
     public void supprimer(int id) {
         this.etudiantRepository.deleteById(id);
+    }
+    @Transactional
+    public void supprimerByEmail(String email) {
+        this.etudiantRepository.deleteByEmail(email);
     }
 
     public void modifier(int id, Etudiant etudiant) {
