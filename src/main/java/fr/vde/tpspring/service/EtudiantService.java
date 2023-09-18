@@ -4,6 +4,8 @@ import fr.vde.tpspring.entities.Etudiant;
 import fr.vde.tpspring.repository.EtudiantRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EtudiantService {
     private EtudiantRepository etudiantRepository;
@@ -21,5 +23,8 @@ public class EtudiantService {
         if (etudiantInBDD == null) {
             this.etudiantRepository.save(etudiant);
         }
+    }
+    public List<Etudiant> lireAll() {
+        return this.etudiantRepository.findAll();
     }
 }
