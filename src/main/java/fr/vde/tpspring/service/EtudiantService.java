@@ -61,6 +61,7 @@ public class EtudiantService {
             etudiantAModifier.setEmail(etudiant.getEmail());
             etudiantAModifier.setTel(etudiant.getTel());
             etudiantAModifier.setAdresse(etudiant.getAdresse());
+
             // ne pas oublier de l'enregistrer sinon les modif ne seront pas exectuer
             this.etudiantRepository.save(etudiantAModifier);
         }
